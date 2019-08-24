@@ -1,4 +1,4 @@
-jQuery(function ($) {
+$(function () {
 	var sheet='1pcTgSycYdDP3ZLNYC7zg_ccrTD_xVuxhNNN45c5M1Hc/2';
 	var jsonUrl = 'https://spreadsheets.google.com/feeds/list/'+sheet+'/public/full?alt=json';
 	$.getJSON(jsonUrl, function(data){
@@ -13,12 +13,22 @@ jQuery(function ($) {
 			if(i == (entry.length - 1)){loadMore();}
 		});
 	})//getJSON
-	$('#summernote').summernote({
-		placeholder: 'See More hổ trợ HTML',
-		tabsize: 2,
-		height: 100
-	});
+
+	
 });//doc end
+$(function () {
+	$('#txtSeeMore').summernote({
+		placeholder: 'Write here ...',
+		height: 100,
+		tabsize: 2
+	  });
+	  //$('#my-summernote2').summernote({airMode: true,placeholder:'Try the airmode'});
+});
+$(window).scroll(function() {
+	if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		loadMore();
+	}
+});
 
 function formOK() {
 	if (confirm("Tốt lắm! Đợi duyệt....")) {
@@ -30,8 +40,3 @@ function formOK() {
 function loadMore(){
 	$(".blog-main .hidden").slice(0,2).removeClass("hidden");
 }
-$(window).scroll(function() {
-	if($(window).scrollTop() + $(window).height() == $(document).height()) {
-		loadMore();
-	}
-});
